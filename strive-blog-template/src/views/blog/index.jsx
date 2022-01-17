@@ -57,7 +57,7 @@ class Blog extends Component {
               </div>
               <div className="blog-details-info">
                 <div>{blog.createdAt}</div>
-                <div>{`${blog.readTime.value} ${blog.readTime.unit} read`}</div>
+                {/* <div>{`${blog.readTime.value} ${blog.readTime.unit} read`}</div> */}
                 <div style={{ marginTop: 20 }}>
                   <BlogLike defaultLikes={["123"]} onChange={console.log} />
                 </div>
