@@ -23,7 +23,7 @@ const NewBlogPost = () => {
       content: striptags(content),
     }
     try {
-      const response = await fetch(`http://localhost:3001/blogpost`, {
+      const response = await fetch(`http://localhost:3003/blogpost`, {
         method: "POST",
         body: JSON.stringify(newPost),
         headers: {
@@ -45,42 +45,22 @@ const NewBlogPost = () => {
       <Form className="mt-5" onSubmit={handleSubmit}>
         <Form.Group controlId="blog-form" className="mt-3">
           <Form.Label>Title</Form.Label>
-          <Form.Control
-            size="lg"
-            placeholder="Title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
+          <Form.Control size="lg" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
         </Form.Group>
 
         <Form.Group controlId="blog-form" className="mt-3">
           <Form.Label>Cover Image</Form.Label>
-          <Form.Control
-            size="lg"
-            placeholder="put the link"
-            value={cover}
-            onChange={(e) => setCover(e.target.value)}
-          />
+          <Form.Control size="lg" placeholder="put the link" value={cover} onChange={(e) => setCover(e.target.value)} />
         </Form.Group>
 
         <Form.Group controlId="blog-form" className="mt-3">
           <Form.Label>Author Name</Form.Label>
-          <Form.Control
-            size="lg"
-            placeholder="Author Name"
-            value={authorName}
-            onChange={(e) => setAuthorName(e.target.value)}
-          />
+          <Form.Control size="lg" placeholder="Author Name" value={authorName} onChange={(e) => setAuthorName(e.target.value)} />
         </Form.Group>
 
         <Form.Group controlId="blog-category" className="mt-3">
           <Form.Label>Category</Form.Label>
-          <Form.Control
-            size="lg"
-            as="select"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          >
+          <Form.Control size="lg" as="select" value={category} onChange={(e) => setCategory(e.target.value)}>
             <option>Action</option>
             <option>Comedy</option>
             <option>Horror</option>
@@ -89,22 +69,13 @@ const NewBlogPost = () => {
         </Form.Group>
         <Form.Group controlId="blog-content" className="mt-3">
           <Form.Label>Blog Content</Form.Label>
-          <ReactQuill
-            value={content}
-            onChange={(html) => setContent(html)}
-            className="new-blog-content"
-          />
+          <ReactQuill value={content} onChange={(html) => setContent(html)} className="new-blog-content" />
         </Form.Group>
         <Form.Group className="d-flex mt-3 justify-content-end">
           <Button type="reset" size="lg" variant="outline-dark">
             Reset
           </Button>
-          <Button
-            type="submit"
-            size="lg"
-            variant="dark"
-            style={{ marginLeft: "1em" }}
-          >
+          <Button type="submit" size="lg" variant="dark" style={{ marginLeft: "1em" }}>
             Submit
           </Button>
         </Form.Group>

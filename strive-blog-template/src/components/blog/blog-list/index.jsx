@@ -7,7 +7,7 @@ const BlogList = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("http://localhost:3001/blogpost")
+      const response = await fetch("http://localhost:3003/blogpost")
       if (response.ok) {
         const blog_Data = await response.json()
         console.log(blog_Data)
@@ -16,7 +16,7 @@ const BlogList = () => {
         console.error("Fetch Failed")
       }
     } catch (error) {
-      console.error(error)
+      console.error(error.message)
     }
   }
 

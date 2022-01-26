@@ -24,12 +24,10 @@ class Blog extends Component {
   fetchDataBlog = async () => {
     try {
       const { id } = this.props.match.params
-      const response = await fetch(`http://localhost:3001/blogpost`)
+      const response = await fetch(`http://localhost:3003/blogpost`)
       if (response.ok) {
         const blogData = await response.json()
-        const blog = blogData.find(
-          (singleBlog) => singleBlog._id.toString() == id
-        )
+        const blog = blogData.find((singleBlog) => singleBlog.id.toString() == id)
 
         if (blog) {
           this.setState({ blog, loading: false })
