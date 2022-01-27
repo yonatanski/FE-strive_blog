@@ -2,8 +2,9 @@ import React, { useState } from "react"
 import "react-quill/dist/quill.snow.css"
 import ReactQuill from "react-quill"
 import { Container, Form, Button } from "react-bootstrap"
+import { useNavigate } from "react-router-dom"
 import "./styles.css"
-import striptags from "striptags"
+// import striptags from "striptags"
 const NewBlogPost = () => {
   const [title, setTitle] = useState("")
   const [cover, setCover] = useState(null)
@@ -20,7 +21,7 @@ const NewBlogPost = () => {
       author: {
         name: authorName,
       },
-      content: striptags(content),
+      content: content,
     }
     try {
       const response = await fetch(`http://localhost:3003/blogpost`, {
@@ -32,8 +33,25 @@ const NewBlogPost = () => {
       })
       if (response.ok) {
         const data = await response.json()
+        handleBlogCoverUploads(data)
       } else {
         console.error("POST failed")
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const handleBlogCoverUploads = async (data) => {
+    const formData = new FormData()
+    formData.append("cover", cover)
+    try {
+      const response = await fetch(`http://localhost:3003/blogpost/${data.id}/uploadSingleCover`, {
+        method: "PATCH",
+        body: formData,
+      })
+      if (response.ok) {
+        console.log("good")
       }
     } catch (error) {
       console.error(error)
@@ -50,7 +68,7 @@ const NewBlogPost = () => {
 
         <Form.Group controlId="blog-form" className="mt-3">
           <Form.Label>Cover Image</Form.Label>
-          <Form.Control size="lg" placeholder="put the link" value={cover} onChange={(e) => setCover(e.target.value)} />
+          <Form.Control type="file" size="lg" onChange={(e) => setCover(e.target.files[0])} />
         </Form.Group>
 
         <Form.Group controlId="blog-form" className="mt-3">

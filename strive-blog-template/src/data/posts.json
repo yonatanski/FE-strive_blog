@@ -1,6 +1,6 @@
 [
   {
-    "_id": 1,
+    "id": 1,
     "category": "Getting Started",
     "title": "From 'Hello World' to Getting Hired as Software Engineer: Strive School meets Mimo",
     "cover": "https://striveschool.ghost.io/content/images/2020/12/M1M06-3.png",
@@ -16,7 +16,7 @@
     "createdAt": "04 Dec 2020"
   },
   {
-    "_id": 2,
+    "id": 2,
     "category": "The W Pledge",
     "title": "Announcing The W Pledge",
     "cover": "https://striveschool.ghost.io/content/images/2021/03/W-fund-1.png",
