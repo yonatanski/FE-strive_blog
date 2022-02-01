@@ -1,6 +1,6 @@
 # Strive Blog Template
 
-# STRIVE BLOG BACK END REPO
+# STRIVE BLOG BACK END REPOSITORY
 
 https://github.com/yonatanski/strive-blog_backend.git
 
