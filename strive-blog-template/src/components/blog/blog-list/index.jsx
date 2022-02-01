@@ -7,7 +7,8 @@ const BlogList = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("http://localhost:3003/blogpost")
+      const apiUrl = process.env.REACT_APP_BE_URL || process.env.REACT_APP_LOCAL_URL
+      const response = await fetch(`${apiUrl}/blogpost`)
       if (response.ok) {
         const blog_Data = await response.json()
         console.log(blog_Data)
