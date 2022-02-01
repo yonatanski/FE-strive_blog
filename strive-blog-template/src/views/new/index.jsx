@@ -11,7 +11,7 @@ const NewBlogPost = () => {
   const [authorName, setAuthorName] = useState("")
   const [category, setCategory] = useState("Action")
   const [content, setContent] = useState("")
-
+  const apiUrl = process.env.REACT_APP_BE_URL
   const handleSubmit = async (e) => {
     e.preventDefault()
     const newPost = {
@@ -24,8 +24,7 @@ const NewBlogPost = () => {
       content: content,
     }
     try {
-      const apiUrl = process.env.REACT_APP_BE_URL || process.env.REACT_APP_LOCAL_URL
-      const response = await fetch(`${apiUrl}/blogpost/blogpost`, {
+      const response = await fetch(`${process.env.REACT_APP_BE_URL}/blogpost`, {
         method: "POST",
         body: JSON.stringify(newPost),
         headers: {
@@ -47,8 +46,7 @@ const NewBlogPost = () => {
     const formData = new FormData()
     formData.append("cover", cover)
     try {
-      const apiUrl = process.env.REACT_APP_BE_URL || process.env.REACT_APP_LOCAL_URL
-      const response = await fetch(`${apiUrl}/blogpost/${data.id}/uploadSingleCover`, {
+      const response = await fetch(`${process.env.REACT_APP_BE_URL}/blogpost/${data.id}/uploadSingleCover`, {
         method: "PATCH",
         body: formData,
       })

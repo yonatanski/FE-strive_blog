@@ -20,12 +20,12 @@ class Blog extends Component {
     //   this.props.history.push("/404")
     // }
   }
-
+  // const apiUrl = process.env.REACT_APP_BE_URL
   fetchDataBlog = async () => {
     try {
       const { id } = this.props.match.params
-      const apiUrl = process.env.REACT_APP_BE_URL || process.env.REACT_APP_LOCAL_URL
-      const response = await fetch(`${apiUrl}/blogpost`)
+
+      const response = await fetch(`${process.env.REACT_APP_BE_URL}/blogpost`)
       if (response.ok) {
         const blogData = await response.json()
         const blog = blogData.find((singleBlog) => singleBlog.id.toString() == id)
