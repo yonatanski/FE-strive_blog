@@ -8,6 +8,7 @@ import "./styles.css"
 class Blog extends Component {
   state = {
     blog: {},
+
     loading: true,
   }
   componentDidMount() {
@@ -38,9 +39,27 @@ class Blog extends Component {
       }
     } catch (error) {}
   }
+  fecthPDfData = async () => {
+    try {
+      const { id } = this.props.match.params
+
+      const response = await fetch(`${process.env.REACT_APP_BE_URL}/blogs/${id}/downloadPDF`)
+      if (response.ok) {
+        const blogData = await response.json()
+        const blog = blogData.find((singleBlog) => singleBlog.id.toString() == id)
+
+        if (blog) {
+          this.setState({ blog, loading: false })
+        } else {
+          this.props.history.push("/404")
+        }
+      }
+    } catch (error) {}
+  }
 
   render() {
     const { loading, blog } = this.state
+    const { id } = this.props.match.params
     if (loading) {
       return <div>loading</div>
     } else {
@@ -49,7 +68,6 @@ class Blog extends Component {
           <Container>
             <Image className="blog-details-cover" src={blog.cover} fluid />
             <h1 className="blog-details-title">{blog.title}</h1>
-
             <div className="blog-details-container">
               <div className="blog-details-author">
                 <BlogAuthor {...blog.author} />
@@ -62,8 +80,11 @@ class Blog extends Component {
                 </div>
               </div>
             </div>
-
             <div dangerouslySetInnerHTML={{ __html: blog.content }}></div>
+
+            <i className="pdf-icon bi bi-file-earmark-pdf text-danger">
+              <a href={`${process.env.REACT_APP_BE_URL}/blogs/${id}/downloadPDF`}>Download</a>{" "}
+            </i>
           </Container>
         </div>
       )
